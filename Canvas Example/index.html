@@ -11,7 +11,7 @@
             padding: 10;
             margin: 10;
             background: black;
-            color:white;
+            color: white;
             text-align: center;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
@@ -25,7 +25,8 @@
 </head>
 
 <body>
-    <canvas id="myCanvas" width="1366" height="768" style="background: url('https://s2.best-wallpaper.net/wallpaper/1366x768/1711/Scary-room-dark-window_1366x768.jpg')"></canvas>
+    <canvas id="myCanvas" width="1366" height="768"
+        style="background: url('https://s2.best-wallpaper.net/wallpaper/1366x768/1711/Scary-room-dark-window_1366x768.jpg')"></canvas>
     <div>
         <h1>ONCE UPON A TIME</h1>
         <h3 style="color: darkred">Canvas Example using Pure JavaScript </h3>
@@ -34,44 +35,53 @@
 
 
     <script>
-        var canvas = document.getElementById("myCanvas"); // Canvas'a verdiğimiz ID sayesinde eriştik.
-        var ctx = canvas.getContext("2d"); // 2d built-in'ini projeye ekledik. Bu sayede çizimlere erişebiliriz.
+        // Canvas'a verdiğimiz ID sayesinde eriştik.
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
 
-        var x = canvas.width / 2; // top'un yaratıldığı konum. 
+        var x = canvas.width / 2;
         var y = canvas.height / 2;
-        var ballRadius = 60; // top'un yarıçapı
+        var ballRadius = 60;
 
-        var dx = 4; // top'un frame başına x doğrultusundaki değişimi.
+        // top'un frame başına x doğrultusundaki değişimi.
+        var dx = 4;
         var dy = -4;
         var randomColor;
 
         function randomColorGenerator() {
-            randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16); // Random Color Generator
+            randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
         }
 
         function drawBall() {
-            ctx.beginPath(); // tüm draw instruction'ları beginPath ve closePath arasında yazılır.
-            ctx.arc(x, y, ballRadius, 0, Math.PI * 2); // çember çizmek için. 
-            ctx.fillStyle = randomColor; // renk seçimi
-            ctx.fill(); // çemberin içini doldurmak, daire yapmak.
-            ctx.closePath();
+            // tüm draw instruction'ları beginPath ve closePath arasında yazılır.
+            context.beginPath();
+            context.arc(x, y, ballRadius, 0, Math.PI * 2);
+            context.fillStyle = randomColor;
+            context.fill();
+            context.closePath();
         }
 
         function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // her frame'de ekran temizlenir.
-            drawBall(); // top yaratılır
+            // her frame'de ekran temizlenir.
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+
+            //  Top kenarlara çarpınca yön değiştirir.
             if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-                dx = -dx;   //  Top kenarlara çarpınca yön değiştirir.
+                dx = -dx;
                 randomColorGenerator();
             }
             if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
                 dy = -dy;
                 randomColorGenerator();
             }
-            x += dx; // top'un pozisyonu değiştirilir
+
+            // Top'un her framede pozisyonunu değiştir
+            x += dx;
             y += dy;
         }
-        setInterval(draw, 10); // draw fonksiyonu her 10ms'de 1 yeniden renderlanır.
+        // draw fonksiyonu her 10ms'de 1 yeniden renderlanır.
+        setInterval(draw, 10);
     </script>
 </body>
 
