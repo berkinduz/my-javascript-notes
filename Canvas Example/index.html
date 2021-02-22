@@ -36,17 +36,17 @@
 
     <script>
         // Canvas'a verdiğimiz ID sayesinde eriştik.
-        var canvas = document.getElementById("myCanvas");
-        var context = canvas.getContext("2d");
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
 
-        var x = canvas.width / 2;
-        var y = canvas.height / 2;
-        var ballRadius = 60;
+        let x = canvas.width / 2;
+        let y = canvas.height / 2;
+        let ballRadius = 60;
 
         // top'un frame başına x doğrultusundaki değişimi.
-        var dx = 4;
-        var dy = -4;
-        var randomColor;
+        let dx = 4;
+        let dy = -4;
+        let randomColor;
 
         function randomColorGenerator() {
             randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
