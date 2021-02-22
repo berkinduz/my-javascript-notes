@@ -1,4 +1,4 @@
 # MY JAVASCRIPT NOTES AND EXAMPLES
 
-Canvas example added.\n
+Canvas example added. <br/>
 2D Simple Game Example added. (not completed yet.)
