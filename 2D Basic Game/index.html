@@ -1,3 +1,4 @@
+<!-- Berkin Düz Javascript Examples -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,41 +15,95 @@
 </head>
 
 <body>
-
+    <!-- myCanvas adında belirtilen ölçülerde canvas oluşturduk-->
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
     <script>
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
-        var ballRadius = 10;
-        var x = canvas.width / 2;
-        var y = canvas.height - 30;
-        var dx = 2;
-        var dy = -2;
 
-        function drawBall() {
+        // Ball için değişkenler
+        var ballRadius = 10; // Ball'un yarıçapı
+        var x = canvas.width / 2; //  Spawn noktası.
+        var y = canvas.height - 30;
+        var dx = 2; // X yönünde hareket değişimi
+        var dy = -2; // Y yönünde hareket değişimi
+
+        // Paddle(çubuk) için değişkenler
+        var paddleHeight = 10; // paddle'ın boyu
+        var paddleWidth = 75; // paddle'ın eni
+        var paddleX = (canvas.width - paddleWidth) / 2; // paddle'ın spawn noktası
+        var rightPressed = false; // sağ ve sol tuşa basma durumu için değişken oluşturduk.
+        var leftPressed = false;
+
+        function drawBall() { // Top'u çizme fonksiyonu.
             ctx.beginPath();
-            ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2); // çember yarattık
+            ctx.fillStyle = "#0095DD"; // içini doldurma rengini seçtik.
+            ctx.fill(); // daire haline getirdik.
+            ctx.closePath();
+        }
+
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight); // Paddle yarattık.
             ctx.fillStyle = "#0095DD";
             ctx.fill();
             ctx.closePath();
         }
 
         function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // her frame başlangıcında ekranı temizledik
             drawBall();
+            drawPaddle();
 
             if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
                 dx = -dx;
-            }
+            } // X veya Y koordinatında kenarlara çarpma durumunda hareketi tersine döndürdük.
             if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
                 dy = -dy;
             }
 
-            x += dx;
+            x += dx; // X ve Y koordinatında değişim, hareketi sağlıyoruz.
             y += dy;
-        }
 
-        setInterval(draw, 10);
+            if(rightPressed) {
+                paddleX += 7;
+                if (paddleX + paddleWidth > canvas.width){
+                    paddleX = canvas.width - paddleWidth;
+                }
+            }
+            else if(leftPressed) {
+                paddleX -= 7;
+                if (paddleX < 0){
+                    paddleX = 0;
+                }
+            }
+        }
+        setInterval(draw, 10); // draw fonksiyonu 10ms'de 1 render ediliyor.
+
+        // Tuşların basılma ve basılmama durumu
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+
+        // Tuşlara basıldığında durumları True'ye döner.
+        function keyDownHandler(e) {
+            if(e.key == "Right" || e.key == "ArrowRight") {
+                rightPressed = true;
+            }
+            else if(e.key == "Left" || e.key == "ArrowLeft") {
+                leftPressed = true;
+            }
+        }
+        
+        // Tuşlardan el çekildiğinde durumları False'a döner.
+        function keyUpHandler(e) {
+            if(e.key == "Right" || e.key == "ArrowRight") {
+                rightPressed = false;
+            }
+            else if(e.key == "Left" || e.key == "ArrowLeft") {
+                leftPressed = false;
+            }
+        }
     </script>
 </body>
