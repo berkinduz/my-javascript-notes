@@ -1,3 +1,3 @@
-# CanvasUse
+# MY JAVASCRIPT NOTES AND EXAMPLES
 
-Canvas Use with pure Javascript. 
+Canvas example added.
