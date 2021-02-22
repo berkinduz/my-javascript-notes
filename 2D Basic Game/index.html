@@ -20,63 +20,74 @@
 
     <script>
         var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
+        var context = canvas.getContext("2d");
 
-        // Ball için değişkenler
-        var ballRadius = 10; // Ball'un yarıçapı
-        var x = canvas.width / 2; //  Spawn noktası.
-        var y = canvas.height - 30;
-        var dx = 2; // X yönünde hareket değişimi
-        var dy = -2; // Y yönünde hareket değişimi
+        // Ball için değişkenler ---------------
 
-        // Paddle(çubuk) için değişkenler
-        var paddleHeight = 10; // paddle'ın boyu
-        var paddleWidth = 75; // paddle'ın eni
-        var paddleX = (canvas.width - paddleWidth) / 2; // paddle'ın spawn noktası
-        var rightPressed = false; // sağ ve sol tuşa basma durumu için değişken oluşturduk.
+        var ballRadius = 10; 
+        var ballXLocation = canvas.width / 2; 
+        var ballYLocation = canvas.height - 30;
+        // hareket hızı buradan ayarlanabilir
+        var changeX = 2;
+        var changeY = -2; 
+
+        // Paddle(çubuk) için değişkenler ---------------
+
+        var paddleHeight = 10; 
+        var paddleWidth = 75; 
+        var paddleXLocation = (canvas.width - paddleWidth) / 2;
+        var rightPressed = false; 
         var leftPressed = false;
 
-        function drawBall() { // Top'u çizme fonksiyonu.
-            ctx.beginPath();
-            ctx.arc(x, y, ballRadius, 0, Math.PI * 2); // çember yarattık
-            ctx.fillStyle = "#0095DD"; // içini doldurma rengini seçtik.
-            ctx.fill(); // daire haline getirdik.
-            ctx.closePath();
+        function drawBall() { 
+            // Çizim işlemleri beginPath ve closePath arasında yapılır
+            context.beginPath();
+
+            // Çember çizimi, içini doldurma ve renk belirleme.
+            context.arc(ballXLocation, ballYLocation, ballRadius, 0, Math.PI * 2); 
+            context.fillStyle = "#0095DD";
+            context.fill();
+
+            context.closePath();
         }
 
         function drawPaddle() {
-            ctx.beginPath();
-            ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight); // Paddle yarattık.
-            ctx.fillStyle = "#0095DD";
-            ctx.fill();
-            ctx.closePath();
+            context.beginPath();
+            // Paddle çizimi. (x,y,en,boy)
+            context.rect(paddleXLocation, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+            context.fillStyle = "#0095DD";
+            context.fill();
+            context.closePath();
         }
 
         function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // her frame başlangıcında ekranı temizledik
+            // her yeni frame'de ekranı temizle.
+            context.clearRect(0, 0, canvas.width, canvas.height);
             drawBall();
             drawPaddle();
 
-            if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-                dx = -dx;
-            } // X veya Y koordinatında kenarlara çarpma durumunda hareketi tersine döndürdük.
-            if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-                dy = -dy;
+            // X veya Y koordinatında kenarlara çarpma durumunda hareketi tersine çevir
+            if (ballXLocation + changeX > canvas.width - ballRadius || ballXLocation + changeX < ballRadius) {
+                changeX = -changeX;
+            } 
+            if (ballYLocation + changeY > canvas.height - ballRadius || ballYLocation + changeY < ballRadius) {
+                changeY = -changeY;
             }
 
-            x += dx; // X ve Y koordinatında değişim, hareketi sağlıyoruz.
-            y += dy;
+            // X ve Y koordinatında değişim, hareketin sağlanması
+            ballXLocation += changeX;
+            ballYLocation += changeY;
 
             if(rightPressed) {
-                paddleX += 7;
-                if (paddleX + paddleWidth > canvas.width){
-                    paddleX = canvas.width - paddleWidth;
+                paddleXLocation += 7;
+                if (paddleXLocation + paddleWidth > canvas.width){
+                    paddleXLocation = canvas.width - paddleWidth;
                 }
             }
             else if(leftPressed) {
-                paddleX -= 7;
-                if (paddleX < 0){
-                    paddleX = 0;
+                paddleXLocation -= 7;
+                if (paddleXLocation < 0){
+                    paddleXLocation = 0;
                 }
             }
         }
