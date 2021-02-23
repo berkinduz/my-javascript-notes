@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+
+        * {
+            text-align: center;
+            background-color:beige
+        }
+        
+        #counter-text {
+            margin-top: 20%;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 30px;
+            margin-bottom: 0px;
+        }
+
+        #counter {
+            margin-top: 0px;
+            margin-bottom: 50px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 100px;
+        }
+
+        button {
+            font-size: 30px;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition-duration: 0.3s;
+        }
+
+        button:hover {
+            background-color: gray;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="counter-text">
+        <h1> Counter </h1>
+    </div>
+    <div id="counter">
+        24
+    </div>
+    <div>
+        <button onClick="decrease()">Decrease</button>
+        <button onClick="reset()">Reset</button>
+        <button onClick="increase()">Increase</button>
+    </div>
+
+<script>
+    let counter = 0;
+    document.getElementById("counter").innerHTML = counter;
+
+    function decrease() {
+        counter --;
+        document.getElementById("counter").innerHTML = counter;
+    }
+    function increase() {
+        counter++;
+        document.getElementById("counter").innerHTML = counter;
+    }
+    function reset() {
+        counter = 0;
+        document.getElementById("counter").innerHTML = counter;
+    }
+</script>
+</body>
+</html>
