@@ -1,0 +1,68 @@
+<!-- Color Flipper Berkin Düz-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Flipper</title>
+    <style>
+        .header {
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: white;
+            padding: 1px; 
+        }
+
+        .main {
+            padding: 10px;
+        }
+
+        #main-text{
+            text-align: center;
+            margin: 300px 100px 0px 100px;
+            padding: 10px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 60px;
+            background: white;
+        }
+        body {
+            background-color: brown;
+        } 
+
+        button {
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            margin-left: 880px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+ 
+    </div>
+    <div class="main">
+        <div id="main-text">
+            Welcome to Color Flipper
+        </div>
+        <button onclick="colorChanger()">CHANGE!</button>
+    </div>
+
+<script>
+
+    let currentColor;
+
+    function colorChanger () {
+        currentColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        document.body.style.background = currentColor;
+        document.getElementById("main-text").innerHTML = ("Current Color is:  " + currentColor);
+    }
+
+</script>
+</body>
+</html>
