@@ -1,0 +1,59 @@
+.myBox {
+  height: 200px;
+  width: 200px;
+  background-color: gray;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+body {
+  background-color: #2f3832;
+}
+
+body .container {
+  height: 1000px;
+  width: 900px;
+  margin: 0px auto;
+  background-color: white;
+}
+
+body .container header {
+  height: 50px;
+  width: 900px;
+  background-color: orange;
+}
+
+body .container header ul li {
+  float: left;
+}
+
+body .container header ul li:hover {
+  background-color: beige;
+}
+
+body .container header ul li a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 176px;
+  text-decoration: none;
+  font-size: 24px;
+  border: 2px solid white;
+}
+
+body .container header ul li a:hover {
+  color: white;
+}
+
+body .container .boxes {
+  height: 500px;
+  width: 850px;
+  margin: 30px auto;
+  background-color: red;
+}
+/*# sourceMappingURL=main.css.map */

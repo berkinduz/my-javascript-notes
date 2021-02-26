@@ -1,0 +1,65 @@
+$main-color: #2f3832;
+$header: orange;
+$box: red;
+$border: white;
+
+.myBox {
+    height:200px;
+    width: 200px;
+    background-color: gray;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+body {
+  background-color: $main-color;
+
+  .container {
+    height: 1000px;
+    width: 900px;
+    margin: 0px auto;
+    background-color: $border;
+
+    header {
+      height: 50px;
+      width: 900px;
+      background-color: $header;
+
+      ul {
+        li {
+          float: left;
+
+          &:hover {
+            background-color: beige;
+          }
+
+          a {
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            width: 176px;
+            text-decoration: none;
+            font-size: 24px;
+
+            border: 2px solid $border;
+
+            &:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .boxes {
+        height: 500px;
+        width: 850px;
+        margin: 30px auto;
+        background-color: $box;
+    }
+  }
+}
